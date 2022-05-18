@@ -9,18 +9,11 @@ public class FireStyleComp : MonoBehaviour
     public GunAbilty gunAbility;
     [SerializeField]
     public float reloadTime = 1;
-    private float currentReloadTime = 0;
+    public float currentReloadTime = 0;
     internal int bulletFired = 0;
     internal bool IsReady = true;
     public Transform FireTranPos;
-    public int m_GunType=0;
-    public UnityEvent DoneFired;
-
-    public void Start()
-    {
-        //for (int i = 0; i < gunAbility.Length; ++i)
-        //    gunAbility[i] ;
-    }
+    public bool Isfired;
 
     public void InitWeapon(Transform FireTranPos)
     {
@@ -32,31 +25,27 @@ public class FireStyleComp : MonoBehaviour
         //Debug.Log(IsReady);
         if (!IsReady)
         {
-            Debug.Log("1");
-            if (this == null) Debug.Log("this null"); else Debug.Log("This not null");
+            if (currentReloadTime > 0) currentReloadTime -= Time.deltaTime;
             gunAbility.DoUpdate(this);
         }
     }
 
-    public void OnGunFireTrigger()
+    public virtual void OnGunFireTrigger()
     {
-        Debug.Log("33: "+IsReady);
-        if (!IsReady && currentReloadTime > 0)
+        if (!IsReady)
         {
-            Debug.Log("333");
             return;
-        }    
-        Debug.Log('3');
+        };
+        currentReloadTime = 0;
+        Isfired = false;
         IsReady = false;
-        currentReloadTime = reloadTime;
-        bulletFired = 0;
     }
 
 
     public virtual void OnDoneTrigger()
     {
-        
-        DoneFired?.Invoke();
+        //DoneFired?.Invoke();
         IsReady = true;
     }
+    
 }

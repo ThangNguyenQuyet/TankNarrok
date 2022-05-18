@@ -7,13 +7,18 @@ using static ItemScript;
 public class ItemScript : MonoBehaviour, ICollecableItem
 {
     [SerializeField]
-    private GameObject m_GunType;
+    private GunAbilty m_GunType;
+
 
     [SerializeField]
     private int m_CountBullet;
 
     [SerializeField]
     private float m_ReloadTime;
+
+    [SerializeField]
+    private float m_Degree;
+
 
     internal Action OnCollectedItem;
 
@@ -27,16 +32,7 @@ public class ItemScript : MonoBehaviour, ICollecableItem
         Debug.Log("trigger");
         if (other != null && other.CompareTag("Player"))
         {
-            Transform will_be_destroy=other.GetComponent<Transform>().Find("Machinegun(Clone)");
-            if (will_be_destroy!=null) Destroy(will_be_destroy.gameObject);
-            //other.GetComponentInParent<3>().m_GunType = m_GunType;
-            GameObject tmp = Instantiate(m_GunType, other.GetComponentInParent<Transform>());
-
-            tmp.GetComponent<FireStyleComp>().reloadTime = m_ReloadTime;
-            other.GetComponentInParent<TankShooting>().m_GunObject[1] = tmp.GetComponent<FireStyleComp>();
-            other.GetComponentInParent<TankShooting>().m_CountBullet = m_CountBullet;
-            tmp.GetComponent<FireStyleComp>().FireTranPos = other.GetComponentInParent<TankShooting>().m_ShootTransform;
-            Debug.LogError(OnCollectedItem == null);
+            other.GetComponentInParent<TankShooting>().currentFireStyle.gunAbility = m_GunType;
             OnCollectedItem?.Invoke();
             Destroy(gameObject);
         };

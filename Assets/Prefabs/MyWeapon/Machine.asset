@@ -12,7 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56abac5487f601b48be25be5cffbd318, type: 3}
   m_Name: Machine
   m_EditorClassIdentifier: 
-  m_NumBullet: 1
+  m_NumBullet: 20
   m_ShellType: {fileID: 1296200734814386331, guid: 8148135f8329aee4b8826a167c3743d9, type: 3}
-  bulletStartSpeed: 100
-  m_TimeShell: 0.01
+  bulletStartSpeed: 20
+  m_TimeShell: 0.1
+  m_degree: 15
+  OutOfBullet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

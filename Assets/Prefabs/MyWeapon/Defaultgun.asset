@@ -15,4 +15,4 @@ MonoBehaviour:
   m_NumBullet: 1
   m_ShellType: {fileID: 5409530, guid: 008ecb1b70bec724fa2cd34255b0d8f8, type: 3}
   bulletStartSpeed: 20
-  m_TimeShell: 0.1
+  m_TimeShell: 1

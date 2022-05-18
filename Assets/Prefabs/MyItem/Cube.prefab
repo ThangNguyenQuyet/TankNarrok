@@ -109,9 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604fdc785e2997f43801d699ac3c9cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GunType: {fileID: 4355374296909737955}
-  m_CountBullet: 20
-  m_ReloadTime: 1
+  m_GunType: {fileID: 11400000, guid: 4c90a8727d0b30445b19922bc26948c2, type: 2}
+  m_CountBullet: 10
+  m_ReloadTime: 0.2
+  m_Degree: 20
 --- !u!1001 &5255629446984050871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,11 +170,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89b2fe2cf64cb474489ec6e6e1338132, type: 3}
---- !u!1 &4355374296909737955 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8403394722361165652, guid: 89b2fe2cf64cb474489ec6e6e1338132, type: 3}
-  m_PrefabInstance: {fileID: 5255629446984050871}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4355374296909737954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8403394722361165653, guid: 89b2fe2cf64cb474489ec6e6e1338132, type: 3}

@@ -6,9 +6,14 @@ public class MachineFireStyle : FireStyleComp
 {
     public float currentInterval = 0.0f;
 
+    public override void OnGunFireTrigger()
+    {
+        base.OnGunFireTrigger();
+    }
     public override void OnDoneTrigger()
     {
         base.OnDoneTrigger();
-        currentInterval = 0.0f;
+
     }
+
 }

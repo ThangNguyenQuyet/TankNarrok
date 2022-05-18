@@ -1,33 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Abilities/MachineAbility")]
 public class MachineAbility : GunAbilty
 {
     public float m_TimeShell = 0f;
+    public float m_degree;
+    public UnityEvent OutOfBullet;
 
     public override void DoUpdate(FireStyleComp fireStyleComp)
     {
-        Debug.Log("fire3");
         base.DoUpdate(fireStyleComp);
+
         var firestyleComp = fireStyleComp as MachineFireStyle;
-        firestyleComp.currentInterval -= Time.deltaTime;
-        if (firestyleComp.currentInterval <= 0)
+        if (!firestyleComp.Isfired)
         {
-            //FireOneBullet(firestyleComp.FireTranPos.position, firestyleComp.FireTranPos.rotation.eulerAngles, firestyleComp.force);
-
             FireOneBullet1(fireStyleComp.FireTranPos);
+            firestyleComp.currentReloadTime = m_TimeShell;
             firestyleComp.bulletFired++;
-            firestyleComp.currentInterval = m_TimeShell;
+            if (firestyleComp.bulletFired == m_NumBullet) OutOfBullet?.Invoke();
+            firestyleComp.Isfired = true;
         }
-
-        if (fireStyleComp.bulletFired >= m_NumBullet)
-            firestyleComp.OnDoneTrigger();
+        else
+        {
+            if (firestyleComp.currentReloadTime<=0) firestyleComp.OnDoneTrigger();
+        }        
     }
 
     protected override void FireOneBullet1(Transform transform)
     {
-        base.FireOneBullet1(transform);
+        Transform tmp = Instantiate(transform, transform.parent);
+        tmp.Rotate(0, UnityEngine.Random.Range(-m_degree, m_degree), 0);
+        base.FireOneBullet1(tmp);
+        Destroy(tmp.gameObject);
     }
+
 }
